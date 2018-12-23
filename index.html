@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COGUMELANDO'S MYSTERY RACE MASTER TIMER</title>
+    <style>
+        @font-face {
+            font-family: 'cmrFont';
+            src: url('fonts/Super-Mario-Maker-Extended.ttf');
+        }
+
+        #timer {
+            font-family: 'cmrFont';
+            font-size: 140px;
+            color: #000;
+            margin-left: 4px;
+        }
+
+        body {
+            background-color: #F0F;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <p id="timer">00:00:00</p>
+
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDpW79MlMVcH-xdzcayQBaBSdQZZoriR3g",
+            authDomain: "cogumelando-74705.firebaseapp.com",
+            databaseURL: "https://cogumelando-74705.firebaseio.com",
+            projectId: "cogumelando-74705",
+            storageBucket: "cogumelando-74705.appspot.com",
+            messagingSenderId: "193144694539"
+        };
+        firebase.initializeApp(config);
+
+        var timeRef = firebase.database().ref('/time/current_time/');
+        timeRef.on('value', function(snapshot) {
+            document.getElementById("timer").textContent = snapshot.val();
+        });
+
+    </script>
+</body>
+</html>
